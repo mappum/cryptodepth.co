@@ -2,7 +2,7 @@
 
 module.exports = {
   getUrl (symbol) {
-    return `https://www.okex.com/api/v1/depth.do?symbol=${symbol}&size=200`
+    return `https://api.lbank.info/v1/depth.do?symbol=${symbol}&size=60&merge=1`
   },
 
   pairToSymbol (pair) {

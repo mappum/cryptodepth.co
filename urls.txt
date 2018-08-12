@@ -1,9 +1,0 @@
-https://api.binance.com/api/v1/depth?symbol=${symbol}&limit=${limit}
-https://www.okex.com/api/v1/depth.do?symbol=ltc_btc&size=200
-https://api.huobi.pro/market/depth?symbol=ethusdt&type=step0
-https://api.bitfinex.com/v2/book/tLTCBTC/P3?len=100
-http://api.zb.cn/data/v1/depth?market=LTCBTC&size=100
-https://api.hitbtc.com/api/2/public/orderbook/ETHBTC?limit=0
-https://api.lbank.info/v1/depth.do?symbol=zec_btc&size=60&merge=1
-https://api.kraken.com/0/public/Depth?pair=XLTCXXBT&count=10000
-https://api.pro.coinbase.com/products/BTC-USD/book?level=3

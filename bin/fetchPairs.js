@@ -6,6 +6,8 @@ const { join } = require('path')
 const exchanges = require('../src/exchanges')
 const fetchPairs = require('../src/fetchPairs.js')
 
+// fetches the pairs for each exchange and writes them out
+// to "pairs/${exchangeName}.json"
 async function main () {
   let pairsDir = join(__dirname, '../pairs')
 

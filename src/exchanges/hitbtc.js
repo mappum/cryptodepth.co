@@ -2,7 +2,7 @@
 
 module.exports = {
   getUrl (symbol) {
-    return `https://api.binance.com/api/v1/depth?symbol=${symbol}&limit=1000`
+    return `https://api.hitbtc.com/api/2/public/orderbook/${symbol}?limit=0`
   },
 
   pairToSymbol (pair) {
