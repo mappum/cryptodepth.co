@@ -7,5 +7,9 @@ module.exports = {
 
   pairToSymbol (pair) {
     return pair.join('')
+  },
+
+  aliases: {
+    'MIOTA': 'IOT'
   }
 }

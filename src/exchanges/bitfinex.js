@@ -7,5 +7,11 @@ module.exports = {
 
   pairToSymbol (pair) {
     return 't' + pair.join('')
+  },
+
+  aliases: {
+    'QTUM': 'QTM',
+    'MIOTA': 'IOT',
+    'DASH': 'DSH'
   }
 }

@@ -6,6 +6,6 @@ module.exports = {
   },
 
   pairToSymbol (pair) {
-    return pair.join('_')
+    return pair.join('-')
   }
 }
