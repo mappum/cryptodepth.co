@@ -5,7 +5,7 @@ const bignum = require('bignum')
 
 async function main () {
   let { data } = await get(getBinanceUrl('ZECBTC'))
-  let { bids, asks } = data
+  let { bids } = data
 
   let sum = bignum(0)
   let lastPrice

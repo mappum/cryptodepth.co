@@ -20,7 +20,7 @@
     "standard": "^11.0.1"
   },
   "scripts": {
-    "test": "ava test/*.js"
+    "test": "depcheck && standard && ava test/*.js"
   },
   "author": "Matt Bell <mappum@gmail.com>",
   "license": "MIT"
