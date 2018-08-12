@@ -15,7 +15,7 @@ async function main () {
     let pairs = await fetchPairs(exchangeName)
     let fileName = `${exchangeName}.json`
     let path = join(pairsDir, fileName)
-    let json = JSON.stringify(pairs)
+    let json = JSON.stringify(pairs, null, '  ')
     writeFileSync(path, json)
     console.log(`${pairs.length} pairs written to pairs/${fileName}`)
   }

@@ -9,12 +9,18 @@ async function fetchPairs (exchangeName) {
   let res = await get(`https://coinmarketcap.com/exchanges/${exchangeName}/`)
   let { document } = (new JSDOM(res.data)).window
   let rows = [ ...document.querySelectorAll('tr') ]
-  let pairs = rows.slice(1).map((tr) => {
-    let td = tr.querySelector('td:nth-child(3)')
-    return td.textContent
-  })
-  pairs.sort()
-  return pairs.map((pair) => pair.split('/'))
+  return rows
+    .slice(1)
+    .filter((tr) => {
+      let updatedCell = tr.querySelector('td:last-child')
+      return updatedCell.textContent === 'Recently'
+    })
+    .map((tr) => {
+      let pairCell = tr.querySelector('td:nth-child(3)')
+      return pairCell.textContent
+    })
+    .sort()
+    .map((pair) => pair.split('/'))
 }
 
 module.exports = fetchPairs
