@@ -5,7 +5,7 @@ const { get } = require('axios')
 const { join } = require('path')
 const exchanges = require('../src/exchanges')
 
-const MAX_PAIRS = 10
+const MAX_PAIRS = 20
 
 for (let exchangeName in exchanges) {
   let exchange = exchanges[exchangeName]
