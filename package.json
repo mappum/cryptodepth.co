@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "bignum": "^0.13.0",
     "jsdom": "^11.12.0"
   },
   "devDependencies": {
@@ -20,7 +19,8 @@
     "standard": "^11.0.1"
   },
   "scripts": {
-    "test": "depcheck && standard && ava test/*.js"
+    "test": "depcheck && standard && ava test/*.js",
+    "deploy": "gcloud beta functions deploy fetcher --trigger-http --runtime nodejs8 --timeout 10s"
   },
   "author": "Matt Bell <mappum@gmail.com>",
   "license": "MIT"
