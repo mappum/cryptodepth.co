@@ -20,7 +20,7 @@
   },
   "scripts": {
     "test": "depcheck && standard && ava test/*.js",
-    "deploy": "gcloud beta functions deploy fetcher --trigger-http --runtime nodejs8 --timeout 10s",
+    "deploy": "gcloud beta functions deploy fetcher --trigger-http --runtime nodejs8 --timeout 10s --env-vars-file env.yaml",
     "fetch-pairs": "node bin/fetchPairs.js"
   },
   "author": "Matt Bell <mappum@gmail.com>",
