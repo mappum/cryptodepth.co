@@ -26,15 +26,15 @@ function calculateStats ({ bids, asks }) {
 function parseValue (str) {
   let [ whole, fraction ] = str.split('.')
   fraction = fraction || '0'
-  fraction = fraction.padStart(PRECISION, '0')
+  fraction = fraction.padEnd(PRECISION, '0')
   let integer = whole + fraction
   return bn(integer)
 }
 
 function stringifyValue (n) {
   let str = n.toString()
-  let whole = str.slice(0, -PRECISION)
-  let fraction = str.slice(-PRECISION)
+  let whole = str.slice(0, -PRECISION) || '0'
+  let fraction = str.slice(-PRECISION).padStart(PRECISION, '0')
   return `${whole}.${fraction}`
 }
 
