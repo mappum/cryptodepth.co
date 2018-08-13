@@ -9,6 +9,15 @@ module.exports = {
     return pair.join('')
   },
 
+  normalizeData ({ bids, asks }) {
+    let normalize = (array) =>
+      array.map(([ p, q ]) => [ p, q ])
+    return {
+      bids: normalize(bids),
+      asks: normalize(asks)
+    }
+  },
+
   aliases: {
     'MIOTA': 'IOT'
   }

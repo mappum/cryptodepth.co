@@ -9,6 +9,16 @@ module.exports = {
     return `X${a}X${b}`
   },
 
+  normalizeData (data) {
+    let { bids, asks } = Object.values(data.result)[0]
+    let normalize = (array) =>
+      array.map(([ p, q ]) => [ p, q ])
+    return {
+      bids: normalize(bids),
+      asks: normalize(asks)
+    }
+  },
+
   aliases: {
     'BTC': 'XBT'
   }

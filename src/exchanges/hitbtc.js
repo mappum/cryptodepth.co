@@ -9,6 +9,15 @@ module.exports = {
     return pair.join('')
   },
 
+  normalizeData ({ ask, bid }) {
+    let normalize = (array) =>
+      array.map(({ price, size }) => [ price, size ])
+    return {
+      asks: normalize(ask),
+      bids: normalize(bid)
+    }
+  },
+
   aliases: {
     'USDT': 'USD'
   }
