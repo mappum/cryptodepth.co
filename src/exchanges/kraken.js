@@ -6,6 +6,11 @@ module.exports = {
   },
 
   pairToSymbol ([ a, b ]) {
+    if (a === 'BCH' && b === 'XBT') {
+      return 'BCHXBT'
+    } else if (a === 'XBT' && b === 'USD') {
+      return 'XBTUSD'
+    }
     return `X${a}X${b}`
   },
 
