@@ -1,6 +1,6 @@
 'use strict'
 
-const { SECRET } = process.env
+const { SECRET, FETCHER_URL } = process.env
 
 const { get } = require('axios')
 const fetchDepth = require('./src/fetchDepth.js')
@@ -8,8 +8,6 @@ const calculateStats = require('./src/calculateStats.js')
 const fetchPair = require('./src/fetchPair.js')
 const aggregate = require('./src/aggregate.js')
 const exchanges = require('./src/exchanges')
-
-const FETCHER_URL = 'https://us-central1-cryptodepth.cloudfunctions.net/fetcher'
 
 exports.fetcher = async (req, res) => {
   if (req.query.secret !== SECRET) {
