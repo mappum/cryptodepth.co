@@ -19,15 +19,25 @@ function mainView (state, emit) {
       <section class="main">
         <table>
           <tr>
-            <th></th>
+            <th>#</th>
             <th>Asset</th>
-            <th>Demand</th>
-            <th></th>
+            <th>Effective Value</th>
+            <th>Market Share</th>
+            <th>Cost to 2X Price</th>
+            <th>1% Dump</th>
+            <th>
+              <a class="suggest" href="https://github.com/mappum/cryptodepth.co/issues/new?labels=indicator%20suggestion">
+                Suggest An Indicator
+              </a>
+            </th>
           </tr>
           <tr>
-            <td>X</td>
-            <td>Bitcoin</td>
+            <td>1</td>
+            <td>BTC</td>
             <td>$168,000,000</td>
+            <td>60.3%</td>
+            <td></td>
+            <td></td>
             <td></td>
           </tr>
         </table>
