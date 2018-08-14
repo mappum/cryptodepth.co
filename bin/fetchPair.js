@@ -9,10 +9,7 @@ async function main (pair) {
 
   let results = await fetchPair(pair)
   let aggregated = aggregate(results)
-  console.log({
-    aggregated,
-    exchanges: results
-  })
+  console.log(aggregated)
 }
 
 main(...process.argv.slice(2))

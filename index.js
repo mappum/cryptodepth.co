@@ -27,8 +27,7 @@ exports.fetcher = async (req, res) => {
     .toUpperCase().split('/')
 
   let depth = await fetchDepth(exchange, pair)
-  let stats = calculateStats(depth)
-  res.status(200).json(stats)
+  res.status(200).json(depth)
 }
 
 exports.aggregator = async (req, res) => {
@@ -45,11 +44,7 @@ exports.aggregator = async (req, res) => {
 
   let results = await fetchPair(pair, gcfFetch)
   let aggregated = aggregate(results)
-
-  res.json({
-    aggregated,
-    exchanges: results
-  })
+  res.json(calculateStats(aggregated))
 }
 
 async function gcfFetch (exchange, pair) {

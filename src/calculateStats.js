@@ -13,6 +13,10 @@ function calculateStats ({ bids, asks }) {
   let askValue = bn(0)
   let askQuantity = bn(0)
 
+  let bestBid = parseValue(bids[0][0])
+  let bestAsk = parseValue(asks[0][0])
+  let indexPrice = bestBid.add(bestAsk).div(2)
+
   for (let [ price, quantity ] of bids) {
     price = parseValue(price)
     quantity = parseValue(quantity)
@@ -20,10 +24,9 @@ function calculateStats ({ bids, asks }) {
     bidQuantity = bidQuantity.add(quantity)
   }
 
-  let bestBidX2 = parseValue(bids[0][0]).mul(2)
   for (let [ price, quantity ] of asks) {
     price = parseValue(price)
-    if (price.gt(bestBidX2)) break
+    if (price.gt(indexPrice.mul(2))) break
 
     quantity = parseValue(quantity)
     askValue = askValue.add(price.mul(quantity))
@@ -37,7 +40,9 @@ function calculateStats ({ bids, asks }) {
     bidValue: stringifyValue(bidValue),
     bidQuantity: stringifyValue(bidQuantity),
     askValue: stringifyValue(askValue),
-    askQuantity: stringifyValue(askQuantity)
+    askQuantity: stringifyValue(askQuantity),
+    bestBid: stringifyValue(bestBid),
+    bestAsk: stringifyValue(bestAsk)
   }
 }
 

@@ -2,7 +2,6 @@
 
 const exchanges = require('./exchanges')
 const fetchDepth = require('./fetchDepth.js')
-const calculateStats = require('./calculateStats.js')
 
 // index exchanges for each pair
 const pairExchanges = {}
@@ -34,8 +33,7 @@ async function fetchPair (pair, fetch = defaultFetch) {
 
 async function defaultFetch (exchangeName, pair) {
   let exchange = exchanges[exchangeName]
-  let depth = await fetchDepth(exchange, pair)
-  let data = calculateStats(depth)
+  let data = await fetchDepth(exchange, pair)
   return {
     exchange: exchangeName,
     data
