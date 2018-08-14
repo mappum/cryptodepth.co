@@ -5,13 +5,8 @@ module.exports = {
     return `https://api.kraken.com/0/public/Depth?pair=${symbol}&count=10000`
   },
 
-  pairToSymbol ([ a, b ]) {
-    if (a === 'BCH' && b === 'XBT') {
-      return 'BCHXBT'
-    } else if (a === 'XBT' && b === 'USD') {
-      return 'XBTUSD'
-    }
-    return `X${a}X${b}`
+  pairToSymbol (pair) {
+    return pair.join('')
   },
 
   normalizeData (data) {
