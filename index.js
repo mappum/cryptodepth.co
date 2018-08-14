@@ -5,6 +5,7 @@ const { SECRET } = process.env
 const { get } = require('axios')
 const fetchDepth = require('./src/fetchDepth.js')
 const calculateStats = require('./src/calculateStats.js')
+const fetchPair = require('./src/fetchPair.js')
 const aggregate = require('./src/aggregate.js')
 const exchanges = require('./src/exchanges')
 
@@ -45,11 +46,11 @@ exports.aggregator = async (req, res) => {
     .toUpperCase().split('.')
 
   let results = await fetchPair(pair, gcfFetch)
-  let aggregated = aggregate(formatted)
+  let aggregated = aggregate(results)
 
   res.json({
     aggregated,
-    exchanges: formatted
+    exchanges: results
   })
 }
 

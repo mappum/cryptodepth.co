@@ -3,8 +3,7 @@
 const bn = require('bignum')
 const {
   parseValue,
-  stringifyValue,
-  PRECISION
+  stringifyValue
 } = require('./util.js')
 
 function aggregate (results) {
