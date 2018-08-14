@@ -13,11 +13,6 @@ function calculateStats ({ bids, asks }) {
   let bestAsk = asks[0][0]
   let indexPrice = bestBid.add(bestAsk).div(2)
 
-  // let depth = {
-  //   bids: [],
-  //   asks: []
-  // }
-
   for (let [ price, quantity ] of bids) {
     bidValue = bidValue.add(price.mul(quantity))
     bidQuantity = bidQuantity.add(quantity)
