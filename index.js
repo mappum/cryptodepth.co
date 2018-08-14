@@ -8,19 +8,6 @@ const calculateStats = require('./src/calculateStats.js')
 const aggregate = require('./src/aggregate.js')
 const exchanges = require('./src/exchanges')
 
-const pairExchanges = {}
-for (let exchangeName in exchanges) {
-  let pairs = require(`./pairs/${exchangeName}.json`)
-
-  for (let pair of pairs) {
-    let symbol = pair.join('/')
-    if (!pairExchanges[symbol]) {
-      pairExchanges[symbol] = []
-    }
-    pairExchanges[symbol].push(exchangeName)
-  }
-}
-
 const FETCHER_URL = 'https://us-central1-cryptodepth.cloudfunctions.net/fetcher'
 
 exports.fetcher = async (req, res) => {
@@ -54,29 +41,20 @@ exports.aggregator = async (req, res) => {
     return res.status(400).send('missing args')
   }
 
-  let pair = req.query.pair.toUpperCase()
-  let exchanges = pairExchanges[pair]
-  if (!exchanges) {
-    return res.status(400).send('invalid pair')
-  }
+  let pair = req.query.pair
+    .toUpperCase().split('.')
 
-  let fetchers = exchanges.map(async (exchangeName) => {
-    let url = `${FETCHER_URL}?secret=${SECRET}&pair=${pair}&exchange=${exchangeName}`
-    let { data } = await get(url)
-    return { exchange: exchangeName, data }
-  })
-
-  let results = await Promise.all(fetchers)
-
-  let formatted = {}
-  for (let { exchange, data } of results) {
-    formatted[exchange] = data
-  }
-
-  let result = aggregate(formatted)
+  let results = await fetchPair(pair, gcfFetch)
+  let aggregated = aggregate(formatted)
 
   res.json({
-    result,
+    aggregated,
     exchanges: formatted
   })
+}
+
+async function gcfFetch (exchange, pair) {
+  let url = `${FETCHER_URL}?secret=${SECRET}&pair=${pair}&exchange=${exchange}`
+  let { data } = await get(url)
+  return { exchange, data }
 }
