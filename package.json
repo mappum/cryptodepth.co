@@ -16,12 +16,14 @@
   },
   "devDependencies": {
     "ava": "^0.25.0",
+    "concurrently": "^3.6.1",
     "depcheck": "^0.6.9",
     "standard": "^11.0.1"
   },
   "scripts": {
     "test": "depcheck && standard && ava test/*.js",
-    "deploy": "gcloud beta functions deploy fetcher --trigger-http --runtime nodejs8 --timeout 10s --env-vars-file env.yaml",
+    "deploy": "concurrently 'npm run gcf-deploy fetcher' 'npm run gcf-deploy aggregator'",
+    "gcf-deploy": "gcloud beta functions deploy --trigger-http --runtime nodejs8 --timeout 10s --env-vars-file env.yaml",
     "fetch-pairs": "node bin/fetchPairs.js"
   },
   "author": "Matt Bell <mappum@gmail.com>",
