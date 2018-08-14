@@ -1,8 +1,16 @@
 'use strict'
 
 const bn = require('bignum')
+const { inspect } = require('util')
 
 const PRECISION = 8
+
+bn.prototype.toJSON = stringifyThis
+bn.prototype[inspect.custom] = stringifyThis
+
+function stringifyThis () {
+  return stringifyValue(this)
+}
 
 function numToString (n) {
   return n.toFixed(PRECISION)

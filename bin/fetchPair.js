@@ -3,13 +3,15 @@
 
 const fetchPair = require('../src/fetchPair.js')
 const aggregate = require('../src/aggregate.js')
+const calculateStats = require('../src/calculateStats.js')
 
 async function main (pair) {
   pair = pair.toUpperCase().split('/')
 
   let results = await fetchPair(pair)
   let aggregated = aggregate(results)
-  console.log(aggregated)
+  let stats = calculateStats(aggregated)
+  console.log(stats)
 }
 
 main(...process.argv.slice(2))
