@@ -8,21 +8,36 @@ const {
 } = require('./util.js')
 
 function calculateStats ({ bids, asks }) {
-  let dumpValue = bn(0)
-  let dumpCapacity = bn(0)
+  let bidValue = bn(0)
+  let bidQuantity = bn(0)
+  let askValue = bn(0)
+  let askQuantity = bn(0)
 
   for (let [ price, quantity ] of bids) {
     price = parseValue(price)
     quantity = parseValue(quantity)
-    dumpValue = dumpValue.add(price.mul(quantity))
-    dumpCapacity = dumpCapacity.add(quantity)
+    bidValue = bidValue.add(price.mul(quantity))
+    bidQuantity = bidQuantity.add(quantity)
   }
 
-  dumpValue = dumpValue.div(bn(10 ** PRECISION))
+  let bestBidX2 = parseValue(bids[0][0]).mul(2)
+  for (let [ price, quantity ] of asks) {
+    price = parseValue(price)
+    if (price.gt(bestBidX2)) break
+
+    quantity = parseValue(quantity)
+    askValue = askValue.add(price.mul(quantity))
+    askQuantity = askQuantity.add(quantity)
+  }
+
+  bidValue = bidValue.div(bn(10 ** PRECISION))
+  askValue = askValue.div(bn(10 ** PRECISION))
 
   return {
-    dumpValue: stringifyValue(dumpValue),
-    dumpCapacity: stringifyValue(dumpCapacity)
+    bidValue: stringifyValue(bidValue),
+    bidQuantity: stringifyValue(bidQuantity),
+    askValue: stringifyValue(askValue),
+    askQuantity: stringifyValue(askQuantity)
   }
 }
 

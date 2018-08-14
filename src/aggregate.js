@@ -7,21 +7,31 @@ const {
 } = require('./util.js')
 
 function aggregate (results) {
-  let dumpValue = bn(0)
-  let dumpCapacity = bn(0)
+  let bidValue = bn(0)
+  let bidQuantity = bn(0)
+  let askValue = bn(0)
+  let askQuantity = bn(0)
 
   for (let data of Object.values(results)) {
-    dumpValue = dumpValue.add(
-      parseValue(data.dumpValue)
+    bidValue = bidValue.add(
+      parseValue(data.bidValue)
     )
-    dumpCapacity = dumpCapacity.add(
-      parseValue(data.dumpCapacity)
+    bidQuantity = bidQuantity.add(
+      parseValue(data.bidQuantity)
+    )
+    askValue = askValue.add(
+      parseValue(data.askValue)
+    )
+    askQuantity = askQuantity.add(
+      parseValue(data.askQuantity)
     )
   }
 
   return {
-    dumpValue: stringifyValue(dumpValue),
-    dumpCapacity: stringifyValue(dumpCapacity)
+    bidValue: stringifyValue(bidValue),
+    bidQuantity: stringifyValue(bidQuantity),
+    askValue: stringifyValue(askValue),
+    askQuantity: stringifyValue(askQuantity)
   }
 }
 
