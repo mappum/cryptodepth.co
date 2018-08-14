@@ -32,20 +32,24 @@ function header () {
 function table (data) {
   return html`
     <table>
-      <tr>
-        <th>#</th>
-        <th>Asset</th>
-        <th>Effective Value</th>
-        <th>Market Share</th>
-        <th>Cost to 2X Price</th>
-        <th>1% Dump Price</th>
-        <th>
-          <a class="suggest" href="https://github.com/mappum/cryptodepth.co/issues/new?labels=indicator%20suggestion">
-            Suggest An<br>Indicator
-          </a>
-        </th>
-      </tr>
-      ${data.map(row)}
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Asset</th>
+          <th>Effective Value</th>
+          <th>Market Share</th>
+          <th>Cost to 2X Price</th>
+          <th>1% Dump Price</th>
+          <th>
+            <a class="suggest" href="https://github.com/mappum/cryptodepth.co/issues/new?labels=indicator%20suggestion">
+              Suggest An<br>Indicator
+            </a>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        ${data.map(row)}
+      </tbody>
     </table>
   `
 }
