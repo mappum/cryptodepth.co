@@ -36,10 +36,38 @@ function table (data) {
         <tr>
           <th>#</th>
           <th>Asset</th>
-          <th>Effective Value</th>
-          <th>Market Share</th>
-          <th>Cost to 2X Price</th>
-          <th>1% Dump Price</th>
+          <th>
+            Effective Value
+            <div class="tooltip">
+              <strong>Effective value</strong> is an alternative to market cap, which measures the total value of an asset.
+              <br><br>
+              It measures the amount of liquidity provided to sellers of the asset across all major exchanges.
+              <br><br>
+              It is equivalent to the amount of value we could get by dumping the asset to zero, based on the current order books.
+            </div>
+          </th>
+          <th>
+            Dominance
+            <div class="tooltip">
+              <strong>Dominance</strong> is the market share of the entire crypto market, based on effective value.
+            </div>
+          </th>
+          <th>
+            Cost to 2X Price
+            <div class="tooltip">
+              <strong>Cost to 2X price</strong> measures how much liquidity is being provided by sellers of the asset.
+              <br><br>
+              It is equivalent to the amount of buying that needs to happen to double the price on all major exchanges, based on the current order books.
+            </div>
+          </th>
+          <th>
+            Crashiness
+            <div class="tooltip">
+              <strong>Crashiness</strong> measures how much the price would change if 1% of the asset's existing tokens were dumped.
+              <br><br>
+              If the value is relatively high, it means the token supply is high relative to the effective supply flowing through the market (for example, large stashes held by the founders).
+            </div>
+          </th>
           <th>
             <a class="suggest" href="https://github.com/mappum/cryptodepth.co/issues/new?labels=indicator%20suggestion">
               Suggest An<br>Indicator

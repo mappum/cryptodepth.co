@@ -43,11 +43,15 @@ section.main
       top: 0
       background: white
       border-radius: 3px
-      padding: 1.2em 0.4em 1em 0.4em
+      padding: 1.2em 0.2em 1em 1em
       text-align: left
       text-transform: uppercase
       font-size: 0.85em
       color: black
+      cursor: pointer
+      z-index: 500
+    th:hover
+      background: rgb(241, 243, 255)
     th:after
       content: ''
       position: absolute
@@ -66,8 +70,28 @@ section.main
     tbody tr
       border-bottom: 1px solid rgb(241, 243, 255)
     td
-      padding: 1.2em 0.4em
+      padding: 1.2em 0.2em 1.2em 1em
     a.suggest
       font-size: 0.75em
       text-decoration: none
       padding: 1.5em 0
+
+* > div.tooltip
+  display: none
+  position: absolute
+  width: 35vw
+  min-width: 250px
+  background: rgb(248, 249, 255)
+  border-radius: 2px
+  border: 1px solid rgb(202, 206, 228)
+  padding: 1.5em
+  z-index: 1000
+  margin-top: 26px
+  margin-left: -100px
+  font-weight: normal
+  text-transform: none
+  font-size: 1.1em
+  line-height: 1.6em
+*:hover > div.tooltip
+  display: block
+  transform: scale(0.999)
