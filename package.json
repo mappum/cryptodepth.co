@@ -32,7 +32,8 @@
     "deploy": "concurrently 'npm run gcf-deploy fetchPair'",
     "gcf-deploy": "gcloud beta functions deploy --trigger-http --runtime nodejs8 --timeout 10s --env-vars-file env.yaml --memory 256mb",
     "fetch-pairs": "node bin/fetchPairs.js",
-    "start": "parcel start client/index.html"
+    "start": "parcel start client/index.html",
+    "build": "parcel build client/index.html -d docs"
   },
   "author": "Matt Bell <mappum@gmail.com>",
   "license": "MIT"

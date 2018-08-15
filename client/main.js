@@ -3,6 +3,8 @@
 const choo = require('choo')
 const html = require('choo/html')
 
+const API_URL = process.env.API_URL || 'http://localhost:8888/assets'
+
 let app = choo()
 app.use(store)
 app.route('/', mainView)
@@ -86,18 +88,18 @@ function row (data, i) {
   return html`
     <tr>
       <td>${i + 1}</td>
-      <td><strong>${data.symbol}</strong></td>
-      <td>${formatDollars(data.effectiveValue)}</td>
-      <td>${formatPercent(data.marketShare)}</td>
-      <td>${formatDollars(data.costTo2x)}</td>
-      <td>${formatPercent(-data.dump1Percent)}</td>
+      <td><strong>${data.asset}</strong></td>
+      <td>${formatDollars(+data.value)}</td>
+      <td>${formatPercent(+data.dominance || 0)}</td>
+      <td>${formatDollars(+data.costTo2x || 0)}</td>
+      <td>${formatPercent(-data.dump1Percent || 0)}</td>
       <td></td>
     </tr>
   `
 }
 
 function formatDollars (n) {
-  return '$' + n.toLocaleString()
+  return '$' + Math.round(n).toLocaleString()
 }
 
 function formatPercent (n) {
@@ -106,17 +108,12 @@ function formatPercent (n) {
 }
 
 function store (state, emitter) {
-  // TODO: fetch data from API
-  state.data = [
-    {
-      symbol: 'BTC',
-      effectiveValue: 1234567890,
-      marketShare: 60.345,
-      costTo2x: 1234567890,
-      dump1Percent: 4.567
-    }
-  ]
-  for (let i = 0; i < 5; i++) {
-    state.data = state.data.concat(state.data)
-  }
+  state.data = []
+
+  fetch(API_URL)
+    .then((res) => res.json())
+    .then((data) => {
+      state.data = data.values
+      emitter.emit('render')
+    })
 }
