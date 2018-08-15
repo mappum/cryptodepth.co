@@ -75,3 +75,4 @@ function parseResults (results) {
 }
 
 module.exports = aggregate
+module.exports.parseResults = parseResults

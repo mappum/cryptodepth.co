@@ -10,7 +10,8 @@ async function main (pair) {
     let exchangePairs = require(`../pairs/${exchangeName}.json`)
     for (let pair of exchangePairs) {
       let symbol = pair.join('/')
-      pairs[symbol] = (pairs[symbol] || []).push(exchangeName)
+      pairs[symbol] = pairs[symbol] || []
+      pairs[symbol].push(exchangeName)
       assets[pair[0]] = (assets[pair[0]] || 0) + 1
       assets[pair[1]] = (assets[pair[1]] || 0) + 1
     }
