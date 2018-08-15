@@ -65,7 +65,7 @@ function table (data) {
             <div class="tooltip">
               <strong>Crashiness</strong> measures how much the price would change if 1% of the asset's existing tokens were dumped.
               <br><br>
-              If the value is relatively high, it means the token supply is high relative to the effective supply flowing through the market (for example, large stashes held by the founders).
+              If the value is relatively high, it means the token supply is high relative to the effective supply flowing through the market (for example, large stashes may be held by the founders).
             </div>
           </th>
           <th>

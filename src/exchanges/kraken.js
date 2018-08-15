@@ -20,6 +20,8 @@ module.exports = {
   },
 
   aliases: {
-    'BTC': 'XBT'
+    'BTC': 'XBT',
+    'DOGE': 'XDG',
+    'STR': 'XLM'
   }
 }

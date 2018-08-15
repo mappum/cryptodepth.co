@@ -28,6 +28,9 @@ function stringifyValue (n) {
   let str = n.toString()
   let whole = str.slice(0, -PRECISION) || '0'
   let fraction = str.slice(-PRECISION).padStart(PRECISION, '0')
+  while (fraction.length > 1 && fraction[fraction.length - 1] === '0') {
+    fraction = fraction.slice(0, -1)
+  }
   return `${whole}.${fraction}`
 }
 

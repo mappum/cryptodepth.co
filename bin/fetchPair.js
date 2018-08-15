@@ -8,10 +8,18 @@ const calculateStats = require('../src/calculateStats.js')
 async function main (pair) {
   pair = pair.toUpperCase().split('/')
 
-  let results = await fetchPair(pair)
-  let aggregated = aggregate(results)
-  let stats = calculateStats(aggregated)
-  console.log(stats)
+  try {
+    let results = await fetchPair(pair)
+    let aggregated = aggregate(results)
+    let stats = calculateStats(aggregated)
+    console.log(stats)
+  } catch (err) {
+    if (err.response && err.response.data) {
+      console.log(err.response.config.url)
+      console.log(err.response.data)
+    }
+    console.log(err.stack)
+  }
 }
 
 main(...process.argv.slice(2))
