@@ -18,8 +18,7 @@ const { parseResults } = require('./aggregate.js')
 const configData = readFileSync('./env.yaml', 'utf8')
 const config = yaml.parse(configData)
 
-async function fetchPair (pair) {
-  // TODO: handle retries
+async function fetchPair (pair, retries = 2) {
   let symbol = pair.join('/')
   let url = `${config.FETCHER_URL}?secret=${config.SECRET}&pair=${symbol}`
   debug(`fetching ${symbol} depth...`)
@@ -30,6 +29,9 @@ async function fetchPair (pair) {
     return data
   } catch (err) {
     console.log(err.response.data)
+    if (retries > 0) {
+      return fetchPair(pair, retries - 1)
+    }
     throw err
   }
 }
@@ -39,10 +41,12 @@ async function createDaemon () {
   let times = {}
 
   console.log('fetching missing pair data')
+  let requests = []
   for (let [ symbol, assetPairs ] of topAssets) {
-    for (let pairStr of assetPairs) {
+    let assetRequests = assetPairs.map(async (pairStr) => {
+      if (pairStr === 'USDT/USD') return
       let pair = pairStr.split('/')
-      if (pair[0] !== symbol) continue
+      if (pair[0] !== symbol) return
 
       try {
         let { time, data } = await load(pair)
@@ -54,8 +58,10 @@ async function createDaemon () {
         times[pairStr] = Date.now()
         await save(pair, data)
       }
-    }
+    })
+    requests.push(...assetRequests)
   }
+  await Promise.all(requests)
 
   console.log('parsing')
   parseResults(depth)

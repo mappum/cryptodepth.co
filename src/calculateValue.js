@@ -10,6 +10,8 @@ const TO_USD = {
   'EUR': bn(1.13e8),
   'JPY': bn(0.009e8),
   'CNY': bn(0.14e8),
+  'GBP': bn(1.27e8),
+  'KRW': bn(0.00088e8),
   'USDT': bn(1e8),
   'USD': bn(1e8)
 }
