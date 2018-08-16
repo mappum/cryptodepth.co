@@ -33,7 +33,7 @@
     "gcf-deploy": "gcloud beta functions deploy --trigger-http --runtime nodejs8 --timeout 10s --env-vars-file env.yaml --memory 256mb",
     "fetch-pairs": "node bin/fetchPairs.js",
     "start": "parcel start client/index.html",
-    "build": "rm -rf docs && parcel build client/index.html -d docs"
+    "build": "rm -rf docs && parcel build client/index.html -d docs && echo cryptodepth.co > docs/CNAME"
   },
   "author": "Matt Bell <mappum@gmail.com>",
   "license": "MIT"
